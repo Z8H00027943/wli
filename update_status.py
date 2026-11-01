@@ -29,14 +29,14 @@ def embed_for(address: str, info: dict) -> dict:
     max_count = players.get("max", "?") if online else "—"
     last_check = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     return {
-        "title": "⛏️ WLI Craft | Server Status",
+        "title": "wli craft | Server Status",
         "color": 0x2ECC71 if online else 0xED4245,
         "fields": [
             {"name": "الحالة | Status", "value": "🟢 Online | شغال" if online else "🔴 Offline | طافي", "inline": False},
             {"name": "اللاعبون | Players", "value": f"{online_count}/{max_count}" if online else "غير متاح (Offline)", "inline": False},
             {"name": "الآيبي | Server IP", "value": f"`{address}`", "inline": False},
         ],
-        "footer": {"text": f"آخر فحص: {last_check} • API may be cached for 5 minutes"},
+        "footer": {"text": {last_check} • Last Check 5 minutes Ago"},
     }
 
 
