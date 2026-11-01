@@ -1,0 +1,19 @@
+name: Update WLI Craft server status
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '3-58/5 * * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Get files
+        uses: actions/checkout@v4
+      - name: Update embed
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_MESSAGE_ID: ${{ vars.DISCORD_MESSAGE_ID }}
+          MC_SERVER_ADDRESS: ${{ vars.MC_SERVER_ADDRESS }}
+        run: python3 update_status.py
